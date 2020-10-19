@@ -7,7 +7,6 @@ import 'string.dart';
 
 class GabtimaticDateUtils {
   static const int _FA = 1;
-  static const int _EN = 2;
   int _languageID = 1;
 
   GabtimaticDateUtils(this._languageID);

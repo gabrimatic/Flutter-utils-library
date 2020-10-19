@@ -1,7 +1,7 @@
 name: gabrimatic_utils
-description: A set of useful tools to make development more easily.
-version: 0.0.1
-author: Hossein Yousefpour
+description: A set of useful tools to make development more easily. The Creator class can helps you to restart the app so easily. A bunch of dateutils which helps you to convert datetime to timestamp, persian date and etc. And lots of other useful utils.
+version: 0.0.2
+author: Hossein Yousefpour <h.yusefpour@gmail.com>
 homepage: https://github.com/gabrimatic/FlutterUtils
 
 environment:
@@ -9,11 +9,10 @@ environment:
   flutter: ">=1.17.0 <2.0.0"
 
 dependencies:
-  sqflite: any
-  jalali_calendar: any
-  persian_datetime_picker: any
-  shared_preferences: any
-  easy_localization: any
+  persian_date: ^0.1.5
+  jalali_calendar: ^1.0.3+1
+  persian_datetime_picker: ^1.0.7
+  easy_localization: ^2.3.3
   flutter:
     sdk: flutter
 
