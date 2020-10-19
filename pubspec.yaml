@@ -1,6 +1,6 @@
 name: gabrimatic_utils
 description: A set of useful tools to make development more easily. A bunch of date utils, restart and exit app functions, string extensions and etc.
-version: 0.0.2
+version: 0.0.3
 author: Hossein Yousefpour <h.yusefpour@gmail.com>
 homepage: https://github.com/gabrimatic/FlutterUtils
 
