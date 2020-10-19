@@ -1,5 +1,5 @@
 name: gabrimatic_utils
-description: A set of useful tools to make development more easily. The Creator class can helps you to restart the app so easily. A bunch of dateutils which helps you to convert datetime to timestamp, persian date and etc. And lots of other useful utils.
+description: A set of useful tools to make development more easily. A bunch of date utils, restart and exit app functions, string extensions and etc.
 version: 0.0.2
 author: Hossein Yousefpour <h.yusefpour@gmail.com>
 homepage: https://github.com/gabrimatic/FlutterUtils
