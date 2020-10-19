@@ -2,7 +2,7 @@ name: gabrimatic_utils
 description: A set of useful tools to make development more easily.
 version: 0.0.1
 author: Hossein Yousefpour
-homepage:
+homepage: https://github.com/gabrimatic/FlutterUtils
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
