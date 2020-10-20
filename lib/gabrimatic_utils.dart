@@ -1,12 +1,10 @@
 library gabrimatic_utils;
 
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'creator.dart';
-
 class GabrimaticUtils {
-  String enNumberToFaNumber(String digits) => (digits
+  /// Convert the farsi digits to english digits in a string
+  static String faDigitToEnDigit(String digit) => (digit
       .replaceAll('٠', '0')
       .replaceAll('۱', '1')
       .replaceAll('۲', '2')
@@ -18,14 +16,25 @@ class GabrimaticUtils {
       .replaceAll('۸', '8')
       .replaceAll('۹', '9'));
 
-  shortIf(
-    dynamic p1,
-    dynamic p2,
-    dynamic returnValue,
-  ) =>
+  /// Convert the english digits to farsi digits in a string
+  static String enDigitToFaDigit(String digit) => (digit
+      .replaceAll('0', '٠')
+      .replaceAll('1', '۱')
+      .replaceAll('2', '۲')
+      .replaceAll('3', '۳')
+      .replaceAll('4', '۴')
+      .replaceAll('5', '۵')
+      .replaceAll('6', '۶')
+      .replaceAll('7', '۷')
+      .replaceAll('8', '۸')
+      .replaceAll('9', '۹'));
+
+  /// p1: first parameter in condition
+  /// p2: Second parameter in condition. default value is [Null]
+  /// returnValue: An object which returns if the condition was true
+  static shortIf(dynamic p1, dynamic returnValue, {dynamic p2}) =>
       (p1 == p2 || p2 == null) ? returnValue : p1;
 
-  void restartApp(BuildContext context) => Creator.recreate(context);
-
-  void exitApp() => SystemChannels.platform.invokeMethod('SystemNavigator.pop');
+  static void exitApp() =>
+      SystemChannels.platform.invokeMethod('SystemNavigator.pop');
 }

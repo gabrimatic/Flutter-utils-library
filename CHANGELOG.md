@@ -1,3 +1,4 @@
-## [0.0.3] - 2020/10/19
+## [0.0.4] - 2020/10/20
 
-Bugs fixed.
+- Methods description added
+- Some Bugs fixed

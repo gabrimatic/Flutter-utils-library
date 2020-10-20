@@ -5,13 +5,13 @@ import 'package:persian_datetime_picker/persian_datetime_picker.dart';
 
 import 'string.dart';
 
+/// This class uses [persian_date] and [persian_datetime_picker] packages for jalali dates.
 class GabtimaticDateUtils {
-  static const int _FA = 1;
-  int _languageID = 1;
+  GabtimaticDateUtils({this.isJalali = false});
 
-  GabtimaticDateUtils(this._languageID);
+  bool isJalali;
 
-  /// Get DateTime
+  // Get Date times
   int nowTimeStamp({bool withTime = true}) =>
       nowDateTime(withTime: withTime).millisecondsSinceEpoch;
 
@@ -25,8 +25,9 @@ class GabtimaticDateUtils {
     return DateTime(date.year, date.month, date.day).millisecondsSinceEpoch;
   }
 
+  /// Returns an String like: 'Tuesday, 25 Oct, 2020'
   String dateTimeToFancyString(DateTime dateTime) {
-    if (_languageID == _FA) {
+    if (isJalali) {
       var persianDate = PersianDate(gregorian: dateTime.toString());
       return (persianDate.weekdayname +
           '، ' +
@@ -49,11 +50,10 @@ class GabtimaticDateUtils {
       ':' +
       timeOfDay.minute.toString().gAddExtraZero;
 
-  /// TimeStamp
-  String readTimestamp(int timestamp, {bool withTime = true}) =>
-      (_languageID == _FA)
-          ? _readPersianTimestamp(timestamp, withTime)
-          : _readGregorianTimestamp(timestamp, withTime);
+  // Timestamps
+  String readTimestamp(int timestamp, {bool withTime = true}) => (isJalali)
+      ? _readJalaliTimestamp(timestamp, withTime)
+      : _readGregorianTimestamp(timestamp, withTime);
 
   String _readGregorianTimestamp(int timestamp, bool withTime) {
     var date = DateTime.fromMillisecondsSinceEpoch(timestamp);
@@ -74,7 +74,7 @@ class GabtimaticDateUtils {
             date.day.toString());
   }
 
-  String _readPersianTimestamp(int timestamp, bool withTime) {
+  String _readJalaliTimestamp(int timestamp, bool withTime) {
     var persianDate = PersianDate(
         gregorian: DateTime.fromMillisecondsSinceEpoch(timestamp).toString());
     return (withTime)
@@ -94,13 +94,13 @@ class GabtimaticDateUtils {
             persianDate.day.toString());
   }
 
-  /// DatePicker
+  // Date pickers
   Future<DateTime> showDatePickerDateTime(BuildContext context,
           {DateTime initialDate,
           DateTime firstDate,
           DateTime lastDate}) async =>
-      (_languageID == _FA)
-          ? await _showPersianDatePicker(
+      (isJalali)
+          ? await _showJalaliDatePicker(
               context, initialDate, firstDate, lastDate)
           : await _showGregorianDatePicker(
               context, initialDate, firstDate, lastDate);
@@ -128,17 +128,17 @@ class GabtimaticDateUtils {
         builder: (ctx, child) => child));
   }
 
-  Future<DateTime> _showPersianDatePicker(BuildContext context,
+  Future<DateTime> _showJalaliDatePicker(BuildContext context,
       DateTime initialDate, DateTime firstDate, DateTime lastDate) async {
-    var initialPersianDate = PersianDate(
+    var initialJalaliDate = PersianDate(
         gregorian: initialDate.toString().isEmpty
             ? DateTime.now().toString()
             : initialDate.toString());
-    var firstPersianDate = PersianDate(
+    var firstJalaliDate = PersianDate(
         gregorian: firstDate.toString().isEmpty
             ? DateTime.now().toString()
             : initialDate.toString());
-    var lastPersianDate = PersianDate(
+    var lastJalaliDate = PersianDate(
         gregorian:
             lastDate ?? DateTime.now().add(Duration(days: 365)).toString());
 
@@ -147,12 +147,11 @@ class GabtimaticDateUtils {
         context: context,
         child: PersianDateTimePicker(
           initial:
-              "${initialPersianDate.year}/${initialPersianDate.month}/${initialPersianDate.day}",
-          // color: app_blueDarkColor,
+              "${initialJalaliDate.year}/${initialJalaliDate.month}/${initialJalaliDate.day}",
           min:
-              "${firstPersianDate.year}/${firstPersianDate.month}/${firstPersianDate.day}",
+              "${firstJalaliDate.year}/${firstJalaliDate.month}/${firstJalaliDate.day}",
           max:
-              "${lastPersianDate.year}/${lastPersianDate.month}/${lastPersianDate.day}",
+              "${lastJalaliDate.year}/${lastJalaliDate.month}/${lastJalaliDate.day}",
           onSelect: (date) => pickedDate = date,
         ));
 
@@ -161,16 +160,16 @@ class GabtimaticDateUtils {
     return PersianDate().jalaliToGregorian(pickedDate.replaceAll('/', '-'));
   }
 
-  /// TimePicker
-  Future<TimeOfDay> showTheTimePicker(BuildContext context) async {
+  // Time picker
+  Future<TimeOfDay> showTheTimePicker(BuildContext context,
+      {bool use24HourFormat = true}) async {
     TimeOfDay picked = (await showTimePicker(
-      context: context,
-      initialTime: TimeOfDay.now(),
-      builder: (BuildContext context, Widget child) => MediaQuery(
-        data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
-        child: child,
-      ),
-    ));
+        context: context,
+        initialTime: TimeOfDay.now(),
+        builder: (BuildContext context, Widget child) => MediaQuery(
+            data: MediaQuery.of(context)
+                .copyWith(alwaysUse24HourFormat: use24HourFormat),
+            child: child)));
     if (picked == null) return null;
     return picked;
   }
