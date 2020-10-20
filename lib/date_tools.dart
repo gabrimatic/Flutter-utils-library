@@ -6,8 +6,8 @@ import 'package:persian_datetime_picker/persian_datetime_picker.dart';
 import 'string.dart';
 
 /// This class uses [persian_date] and [persian_datetime_picker] packages for jalali dates.
-class GabtimaticDateUtils {
-  GabtimaticDateUtils({this.isJalali = false});
+class GabrimaticDateUtils {
+  GabrimaticDateUtils({this.isJalali = false});
 
   bool isJalali;
 
