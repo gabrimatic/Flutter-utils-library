@@ -32,7 +32,11 @@ class GabrimaticUtils {
   /// p1: first parameter in condition
   /// p2: Second parameter in condition. default value is [Null]
   /// returnValue: An object which returns if the condition was true
-  static shortIf(dynamic p1, dynamic returnValue, {dynamic p2}) =>
+  static shortIf({
+    dynamic p1,
+    dynamic p2,
+    dynamic returnValue,
+  }) =>
       (p1 == p2 || p2 == null) ? returnValue : p1;
 
   static void exitApp() =>

@@ -1,0 +1,11 @@
+name: gabrimatic_utils_example
+description: Examples for Gabrimtaic_Util
+private: true
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.1.0 <3.0.0'
+
+dependencies:
+  gabrimatic_utils:

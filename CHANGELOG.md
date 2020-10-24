@@ -1,4 +1,4 @@
-## [0.0.5] - 2020/10/20
+## [0.0.6] - 2020/10/24
 
-- Methods description added
-- Some Bugs fixed
+- Example project added
+- Short if updated
