@@ -1,4 +1,5 @@
-## [0.0.6] - 2020/10/24
+## [0.0.7] - 2020/11/09
 
-- Example project added
-- Short if updated
+- Files structure updated
+- TextArrow widget added
+- TextIcon widget added

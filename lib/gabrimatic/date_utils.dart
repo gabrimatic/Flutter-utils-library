@@ -2,12 +2,11 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:persian_date/persian_date.dart';
 import 'package:persian_datetime_picker/persian_datetime_picker.dart';
-
-import 'string.dart';
+import 'package:gabrimatic_utils/gabrimatic_utils.dart';
 
 /// This class uses [persian_date] and [persian_datetime_picker] packages for jalali dates.
-class GabrimaticDateUtils {
-  GabrimaticDateUtils({this.isJalali = false});
+class DateUtils {
+  DateUtils({this.isJalali = false});
 
   bool isJalali;
 
@@ -18,9 +17,9 @@ class GabrimaticDateUtils {
   DateTime nowDateTime({bool withTime = true}) => (withTime)
       ? DateTime.now()
       : DateTime.fromMillisecondsSinceEpoch(
-          removeTimeFromDate(DateTime.now().millisecondsSinceEpoch));
+          removeTimeFromTimestamp(DateTime.now().millisecondsSinceEpoch));
 
-  int removeTimeFromDate(int timestamp) {
+  int removeTimeFromTimestamp(int timestamp) {
     var date = DateTime.fromMillisecondsSinceEpoch(timestamp);
     return DateTime(date.year, date.month, date.day).millisecondsSinceEpoch;
   }
@@ -41,14 +40,21 @@ class GabrimaticDateUtils {
   }
 
   String getTimeFromDateTime(DateTime dateTime) =>
-      dateTime.hour.toString().gAddExtraZero +
+      dateTime.hour.toString().addExtraZero +
       ':' +
-      dateTime.minute.toString().gAddExtraZero;
+      dateTime.minute.toString().addExtraZero;
 
   String getTimeFromTimeOfDay(TimeOfDay timeOfDay) =>
-      timeOfDay.hour.toString().gAddExtraZero +
+      timeOfDay.hour.toString().addExtraZero +
       ':' +
-      timeOfDay.minute.toString().gAddExtraZero;
+      timeOfDay.minute.toString().addExtraZero;
+
+  String appGetTimeFromTimestamp(int time) {
+    var dateTime = DateTime.fromMillisecondsSinceEpoch(time);
+    return dateTime.hour.toString().addExtraZero +
+        ':' +
+        dateTime.minute.toString().addExtraZero;
+  }
 
   // Timestamps
   String readTimestamp(int timestamp, {bool withTime = true}) => (isJalali)
@@ -64,9 +70,9 @@ class GabrimaticDateUtils {
             '/' +
             date.day.toString() +
             ', at ' +
-            date.hour.toString().gAddExtraZero +
+            date.hour.toString().addExtraZero +
             ':' +
-            date.minute.toString().gAddExtraZero)
+            date.minute.toString().addExtraZero)
         : (date.year.toString() +
             '/' +
             date.month.toString() +
@@ -84,9 +90,9 @@ class GabrimaticDateUtils {
             '/' +
             persianDate.day.toString() +
             '، ' +
-            persianDate.hour.toString().gAddExtraZero +
+            persianDate.hour.toString().addExtraZero +
             ':' +
-            persianDate.minute.toString().gAddExtraZero)
+            persianDate.minute.toString().addExtraZero)
         : (persianDate.year.toString() +
             '/' +
             persianDate.month.toString() +

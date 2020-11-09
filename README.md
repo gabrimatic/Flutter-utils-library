@@ -6,4 +6,4 @@ A set of useful tools to make development more easily.
 
 [Pub.dev page](https://pub.dev/packages/gabrimatic_utils)
 
-[Developer](https://il.ink/gabrimatic)
+[Developer](https://gabrimatic.info)

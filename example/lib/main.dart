@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gabrimatic_utils/creator.dart';
-import 'package:gabrimatic_utils/date_tools.dart';
 import 'package:gabrimatic_utils/gabrimatic_utils.dart';
-import 'package:gabrimatic_utils/string.dart';
 
 void main() {
   runApp(Creator(child: ExampleApp()));
@@ -32,8 +29,7 @@ class ExampleApp extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: TextButton(
               onPressed: () {
-                GabrimaticDateUtils(isJalali: false)
-                    .showDatePickerDateTime(context);
+                DateUtils(isJalali: false).showDatePickerDateTime(context);
               },
               child: Text(
                 'Show datepicker',
@@ -45,7 +41,7 @@ class ExampleApp extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: TextButton(
               onPressed: () {
-                GabrimaticDateUtils(isJalali: false).showTheTimePicker(context);
+                DateUtils(isJalali: false).showTheTimePicker(context);
               },
               child: Text(
                 'Show timepicker',
@@ -71,7 +67,7 @@ class ExampleApp extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: TextButton(
               onPressed: () {
-                print('5'.gAddExtraZero); // returns: 05
+                print('5'.addExtraZero); // returns: 05
               },
               child: Text(
                 'Add zero',
@@ -83,8 +79,7 @@ class ExampleApp extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: TextButton(
               onPressed: () {
-                print(GabrimaticUtils.enDigitToFaDigit(
-                    '123456789')); // returns: ٠۱۲۳۴۵۶۷۸۹
+                print(enDigitToFaDigit('123456789')); // returns: ٠۱۲۳۴۵۶۷۸۹
               },
               child: Text(
                 'Convert english digits to farsi digits',
@@ -96,7 +91,7 @@ class ExampleApp extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: TextButton(
               onPressed: () {
-                GabrimaticUtils.shortIf(
+                shortIf(
                   p1: 'First value', // First parameter in condition
                   // p2: 'Second value', if p2 was null, p1 returns
                   returnValue: 'First is Second',
@@ -112,7 +107,7 @@ class ExampleApp extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: TextButton(
               onPressed: () {
-                GabrimaticUtils.exitApp();
+                exitApp();
               },
               child: Text(
                 'Exit!',
